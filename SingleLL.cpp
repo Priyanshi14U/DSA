@@ -2,17 +2,29 @@
 
 using namespace std;
 
+
+
+//-------------DEFINE NODE-----------------//
 struct Node{
   int data;
   struct Node *next;
 };
 struct Node *head = NULL;
 
+
+//------------DECLARATION OF CODE-------------------------//
+
 struct Node *insertAtBeginning(int data);
 struct Node *insertAtLast(int data);
 struct Node *insertAtPosition(int data, int pos);
 void display();
 void deleteAtBegin();
+void deleteAtEnd();
+void deleteAtPos();
+void search();
+
+
+//---------------DIMAK PKAU FUNCTIONALITIES------------------//
 
 struct Node *insertAtBeginning(int data){
   struct Node *temp;
@@ -84,15 +96,66 @@ struct Node *insertAtPosition(int data, int pos){
       }
   }
 }
-void deleteAtBegin(){
-    struct Node *temp,**head;
+
+void deleteAtBegin() {
+    struct Node *temp;
     if(head==NULL)
     {
         cout<<"Linked List empty!";
     }
-    temp = *head;
-    *head = *head->next;
-    free(temp);
+    else{
+        temp = head;
+        head = head->next;
+        free(temp); 
+    return;
+    }
+}
+
+void deleteAtEnd() {
+    struct Node *temp,*prev;
+    prev=head;
+    temp=head->next;
+    if(head==NULL)
+    {
+        cout<<"Linked list empty";
+    }
+    while(temp->next!=NULL){
+            temp=temp->next;
+            prev=prev->next;
+        }
+        prev->next=NULL;
+        free(temp);
+    return;
+}
+
+void deleteAtPos(int pos){
+    struct Node *temp,*prev;
+    int curpos=1;
+    if(pos<=1){
+        if(head!=NULL){
+          temp=head;
+        head=head->next;
+        free(temp);  
+        }
+        else{
+            cout<<"Yha kuch nhi milega";
+        }
+    }
+    else{
+        temp=head;
+        while(curpos!=pos && temp!=NULL){
+            prev=temp;
+            temp=temp->next;
+            curpos++;
+        }
+        if(curpos==pos){
+            prev->next=temp->next;
+            free(temp);
+        }
+        else{
+            cout<<"Node not found, Aee jaa ree";
+        }
+    }
     return;
 }
 
@@ -113,13 +176,23 @@ void display(){
     
 }
 
+void search(int ele){
+    struct Node *temp;
+    temp=head;
+    while(temp!=NULL){
+        if(temp->data==ele){
+            cout<<"Element found";
+        }
+        temp=temp->next;
+    }
+    if(temp==NULL && temp->data!=ele){
+        cout<<"Element nhi mila";
+    }
+}
+
 int main() {
-  int choice =0; 
-  struct Node *v;
-    // printf("\n\n*********Main Menu*********\n");  
-    //     printf("\nChoose one option from the following list ...\n");  
-    //     printf("\n===============================================\n");  
-    //     printf("\n1.Insert in begining\n2.Insert at last\n3.Insert at any random location\n4.Delete from Beginning\n5.Delete from last\n6.Delete node after specified location\n7.Search for an element\n8.Show\n9.Exit\n"); 
+  int choice =0,fuck=2; 
+  struct Node *v; 
     while(choice != 9)   
     {  
          
@@ -131,9 +204,10 @@ int main() {
                 v=insertAtBeginning(4);    
                 cout<<v->data<<" printed"<<endl;
                 break;  
-            // case 2:  
-            // lastinsert();         
-            // break;  
+            case 2:  
+                 v=insertAtLast(6);
+                 cout<<v->data<<" printed"<<endl;
+                 break;  
             case 3:  
                 v=insertAtPosition(5,2);
                 cout<<v->data<<" printed"<<endl;
@@ -141,22 +215,23 @@ int main() {
             case 4:  
                 deleteAtBegin();       
                 break;  
-            // case 5:  
-            // last_delete();        
-            // break;  
-            // case 6:  
-            // random_delete();          
-            // break;  
-            // case 7:  
-            // search();         
-            // break;  
+            case 5:  
+                deleteAtEnd();        
+                break;  
+            case 6:  
+                deleteAtPos(2);          
+                break;  
+            case 7:
+                cout<<"enter your dimak pkau number";
+                 search(fuck);         
+                break;  
             case 8:  
-            display();        
-            break; 
-      case 9:
-        exit(0); 
+                display();        
+                break; 
+            case 9:
+                exit(0); 
             default:  
-            cout<<"Please enter valid choice..";  
+            cout<<"Please enter valid choice.."<<endl;  
         }  
     }  
     return 0;
