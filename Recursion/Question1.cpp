@@ -39,17 +39,26 @@ void getdigit(int n){
     cout<<n<<endl;
 }
 
-
+void exponent(int a,int b){
+	if(b<=1){
+		return;
+	}
+	exponent(a,b-1);
+	a= a*a;
+	cout<<a;
+}
 int main(){
     cout<<"Enter a number: ";
-    int n,fact,fibos,s=6753;
+    int n,fact,fibos,s=6753,a=3,b;
     cin>>n;
+    cin>>b;
     countinghead(n);
     countingtail(n);
     fact=factorial(n);
     fibos=fibo(n);
-    //cout<<fact<<endl;
-    //cout<<fibos;
+    cout<<fact<<endl;
+    cout<<fibos;
     getdigit(s);
+    exponent(a,b);
     return 0;
 }
