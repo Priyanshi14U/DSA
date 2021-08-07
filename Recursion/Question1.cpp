@@ -39,26 +39,52 @@ void getdigit(int n){
     cout<<n<<endl;
 }
 
-void exponent(int a,int b){
-	if(b<=1){
-		return;
+int exp(int n,int a){
+	int x;
+	if(n==0){
+		return 1;
 	}
-	exponent(a,b-1);
-	a= a*a;
-	cout<<a;
+	
+	x=exp(n/2,a);
+	if(n%2==0){
+		return x*x;
+	}
+	else{
+		return a*x*x;
+	}
 }
+
+bool sortarray(int arr[10],int i){
+	if(arr[i]==arr[4]){
+		return true;
+	}
+	if(arr[i]<arr[i-1]){
+		return false;
+	}
+	sortarray(arr,i+1);
+}
+
 int main(){
     cout<<"Enter a number: ";
-    int n,fact,fibos,s=6753,a=3,b;
+    int n,i=0,fact,fibos,s,a,expo,arr[10]={2,3,4,5};
     cin>>n;
-    cin>>b;
+    cout<<"Print counting : "<<endl;
     countinghead(n);
+    cout<<"Print counting reverse : "<<endl;
     countingtail(n);
-    fact=factorial(n);
-    fibos=fibo(n);
+    cout<<"Factorial of "<<n<<endl;
+    fact = factorial(n);
     cout<<fact<<endl;
-    cout<<fibos;
+    cout<<"Fibonaci series till "<<n<<endl;
+    fibos = fibo(n);
+    cout<<fibos<<endl;
+    cout<<"Enter the number for digit split: ";
+    cin>>s;
     getdigit(s);
-    exponent(a,b);
+	cout<<"Enter the base of exponent: ";
+	cin>>a;
+    expo = exp(n,a);
+    cout<<expo<<endl;
+    cout<<sortarray(arr,i)<<endl;
     return 0;
 }
