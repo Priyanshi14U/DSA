@@ -64,27 +64,42 @@ bool sortarray(int arr[10],int i){
 	sortarray(arr,i+1);
 }
 
+void powerset(int arr[4],int count){
+    if(count<0){
+        return;
+    }
+    for(int i=1;i<=4;i++){
+        while(count%i==0){
+            cout<<arr[i];
+            i++;
+        }
+        cout<<endl;
+    }
+    powerset(arr,count--);
+}
+
 int main(){
     cout<<"Enter a number: ";
-    int n,i=0,fact,fibos,s,a,expo,arr[10]={2,3,4,5};
-    cin>>n;
-    cout<<"Print counting : "<<endl;
-    countinghead(n);
-    cout<<"Print counting reverse : "<<endl;
-    countingtail(n);
-    cout<<"Factorial of "<<n<<endl;
-    fact = factorial(n);
-    cout<<fact<<endl;
-    cout<<"Fibonaci series till "<<n<<endl;
-    fibos = fibo(n);
-    cout<<fibos<<endl;
-    cout<<"Enter the number for digit split: ";
-    cin>>s;
-    getdigit(s);
-	cout<<"Enter the base of exponent: ";
-	cin>>a;
-    expo = exp(n,a);
-    cout<<expo<<endl;
-    cout<<sortarray(arr,i)<<endl;
+    int n,i=0,fact,fibos,s,a,expo,arr[4]={2,3,4,5};
+    // cin>>n;
+    // cout<<"Print counting : "<<endl;
+    // countinghead(n);
+    // cout<<"Print counting reverse : "<<endl;
+    // countingtail(n);
+    // cout<<"Factorial of "<<n<<endl;
+    // fact = factorial(n);
+    // cout<<fact<<endl;
+    // cout<<"Fibonaci series till "<<n<<endl;
+    // fibos = fibo(n);
+    // cout<<fibos<<endl;
+    // cout<<"Enter the number for digit split: ";
+    // cin>>s;
+    // getdigit(s);
+	// cout<<"Enter the base of exponent: ";
+	// cin>>a;
+    // expo = exp(n,a);
+    // cout<<expo<<endl;
+    // cout<<sortarray(arr,i)<<endl;
+    powerset(arr,4);
     return 0;
 }

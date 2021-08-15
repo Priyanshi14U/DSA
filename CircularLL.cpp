@@ -24,9 +24,10 @@ struct CLLnode *insertAtBeginning(int data){
         while(temp->next!=head){
             temp=temp->next;
         }
-        newnode->next=head;
         temp->next=newnode;
+        newnode->next=head;
         head=newnode;
+        
     }
     return head;
 }
