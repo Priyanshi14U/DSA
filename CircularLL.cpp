@@ -10,6 +10,8 @@ struct CLLnode *head=NULL;
 
 struct CLLnode *insertAtBeginning(int data);
 struct CLLnode *insertAtLast(int data);
+void deleteAtBegin();
+void deleteAtEnd();
 
 struct CLLnode *insertAtBeginning(int data){
     struct CLLnode *newnode, *temp;
@@ -50,6 +52,36 @@ struct CLLnode *insertAtLast(int data){
     return newnode;
 }
 
+void deleteAtBegin(){
+    struct CLLnode *temp;
+    temp = head;
+    if(head==NULL){
+        cout<<"Empty list!"<<endl;
+        return;
+    }
+    while(temp->next!=head){
+        temp=temp->next;
+    }
+    temp->next=head->next;
+    free(head);
+    head=temp->next;
+    return;
+}
+
+void deleteAtEnd(){
+    struct CLLnode *temp;
+    temp = head;
+    if(head==NULL){
+        cout<<"Empty list!"<<endl;
+        return;
+    }
+    while(temp->next->next!=head){
+        temp=temp->next;
+    }
+    free(temp->next);
+    temp->next=head;
+}
+
 void display(){
     struct CLLnode *temp;
     temp=head;
@@ -86,27 +118,18 @@ int main() {
                  v=insertAtLast(2);
                  cout<<v->data<<" printed"<<endl;
                  break;  
-            // case 3:  
-            //     v=insertAtPosition(5,2);
-            //     cout<<v->data<<" printed"<<endl;
-            //     break;  
-            // case 4:  
-            //     deleteAtBegin();       
-            //     break;  
-            // case 5:  
-            //     deleteAtEnd();        
-            //     break;  
-            // case 6:  
-            //     deleteAtPos(2);          
-            //     break;  
-            // case 7:
-            //     cout<<"enter your dimak pkau number";
-            //      search(fuck);         
-            //     break;  
-            case 8:  
+            case 3:  
+                deleteAtBegin();
+                cout<<"Node Deleted!"<<endl;
+                break;  
+            case 4:  
+                deleteAtEnd(); 
+                cout<<"Node Deleted!"<<endl;
+                break;  
+            case 5:  
                 display();        
                 break; 
-            case 9:
+            case 6:
                 exit(0); 
             default:  
             cout<<"Please enter valid choice.."<<endl;  
