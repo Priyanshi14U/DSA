@@ -7,8 +7,6 @@ struct Stack{
     int capacity; 
     int *array; 
 }; 
- 
- 
 struct Stack *createStack(int capacity){ 
     struct Stack *S=(struct Stack*)malloc(sizeof(struct Stack)); 
     if(!S){ 
