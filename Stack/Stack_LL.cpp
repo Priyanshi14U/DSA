@@ -20,6 +20,10 @@ struct Stack *createStack(){
     return S;
 }
 
+int isEmpty(struct Stack *S){
+    return (S->top==NULL);
+}
+
 void push(struct Stack *S,int data){
     struct Node *temp = (struct Node *)malloc(sizeof(struct Node));
     if(!temp){
@@ -29,8 +33,52 @@ void push(struct Stack *S,int data){
     temp->data=data;
     temp->next=S->top;
     S->top=temp;
-    cout<<temp->data<<"Pushed!"<<endl;
+    cout<<temp->data<<" pushed!"<<endl;
     return;
+}
+
+void pop(struct Stack *S){
+    if(isEmpty(S)){
+        cout<<"Underflow";
+        return;
+    }
+    cout<<S->top->data<<" popped!"<<endl;
+    S->top=S->top->next;
+    // free(S->top);
+    return;
+}
+
+void peek(struct Stack *S){
+    if(isEmpty(S)){
+        cout<<" Empty Stack ";
+        return;
+    }
+    cout<<S->top->data<<" on top of stack"<<endl;
+}
+
+void size(struct Stack *S){
+    int count=0;
+    if(isEmpty(S)){
+        cout<<"Empty Stack! ";
+        return;
+    }
+    while(S->top){
+        count++;
+        S->top=S->top->next;
+    }
+    cout<<count<<endl;
+    cout<<"Size of the Stack is "<<count<<endl;
+}
+
+void deleteStack(struct Stack *S){
+    if(isEmpty(S)){
+        cout<<"Empty Stack! ";
+        return;
+    }
+    // while(S->top!=NULL){
+    //     S->top=S->top->next;
+    //     free(S->top);
+    //}
 }
 
 int main(){
@@ -46,6 +94,18 @@ int main(){
                 cout<<"Enter number: ";
                 cin>>data;
                 push(stk,data);
+                break;
+            case 2:
+                pop(stk);
+                break;
+            case 3:
+                peek(stk);
+                break;
+            case 4:
+                size(stk);
+                break;
+            case 5:
+                deleteStack(stk);
                 break;
             default:
                 cout<<"Enter valid choice!";
